@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class GlobalClass {
   static PreferredSizeWidget appbar(String title) {
     return AppBar(
-      title: Text(title),
+      backgroundColor: Colors.deepPurple,
+      title: Text(title,style: TextStyle(color: Colors.white),),
     );
   }
 

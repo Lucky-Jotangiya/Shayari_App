@@ -226,6 +226,7 @@ class _FinalPageState extends State<FinalPage> {
                   InkWell(
                     onTap: () {
                       showModalBottomSheet(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(11)),
                         backgroundColor: Colors.lightBlueAccent.shade100,
                         context: context, builder: (context) {
                         return Container(
@@ -460,6 +461,7 @@ class _FinalPageState extends State<FinalPage> {
                   InkWell(
                     onTap: () {
                       showModalBottomSheet(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(11)),
                         backgroundColor: Colors.lightBlueAccent.shade100,
                         context: context, builder: (context) {
                         return Container(
@@ -652,35 +654,13 @@ class _FinalPageState extends State<FinalPage> {
 
                   InkWell(
                     onTap: () {
-                      con.capture().then((value) {
+                      con.capture().then((value) async {
                         String imageName = "Image${Random().nextInt(10000)}.jpg";
                         String imagePath = "$folderPath/$imageName";
-                        file = File(imagePath);
+                        File file = File(imagePath);
                         file.writeAsBytes(value as List<int>);
-                        file.create();
-                      });
-                      Fluttertoast.showToast(msg: "Saved",backgroundColor: Colors.white,textColor: Colors.black);
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 30),
-                          child: Icon(Icons.download,color: Colors.white,size: 35,),
-                        ),
-                        SizedBox(height: 10,),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 30),
-                          child: Text("Save",style: TextStyle(color: Colors.white,fontSize: 11),),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  InkWell(
-                    onTap: () {
-                      con.capture().then((value) {
-                        Directory tempDirectory = getTemporaryDirectory() as Directory;
+                        File ff = await file.create();
+                        Share.shareFiles(["${file.path}"]);
                       });
                     },
                     child: Column(
