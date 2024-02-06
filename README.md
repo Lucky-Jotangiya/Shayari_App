@@ -1,4 +1,4 @@
-# shayri2023
+# Shayari_App
 
 A new Flutter project.
 
